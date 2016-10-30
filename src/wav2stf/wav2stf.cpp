@@ -1,7 +1,7 @@
-#include "parse-opt.hpp"
+#include "util/parse-opt.hpp"
+#include "util/wav_utils.hpp"
 
 #include <iostream>
-#include <fftw3.h>
 
 
 int main(int argc, char** argv)
@@ -16,8 +16,20 @@ int main(int argc, char** argv)
     parse_opt.register_opt("l|log", &logfile, false, "Log file path");
     parse_opt.parse(argc, argv);
 
+    string input_fn  = parse_opt.get_positional(0);
+    string output_fn = parse_opt.get_positional(1);
+
+    cout << "Executing wav2stf with log file: " +
+        logfile +
+        ", input: " + input_fn +
+        ", output: " + output_fn + "\n";
+
     Logger logger(logfile);
-    handle_error(logger, "Error");
+
+    WavData wav_data;
+    StFourierData st_fourier_data;
+    load_wav(input_fn, wav_data, logger);
+    st_fourier(wav_data, st_fourier_data, logger);
 
     return 0;
 }

@@ -203,6 +203,13 @@ namespace neurosynth
             }
         }
 
+        std::string get_positional(size_t i)
+        {
+            if(i >= m_positional.size())
+                return "";
+            return m_positional[i];
+        }
+
     private:
         const std::string m_usage;
 

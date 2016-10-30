@@ -7,7 +7,7 @@ BIN_DIR      = bin
 OBJ_DIR      = obj
 SRC_DIR      = src
 TARGETS      = wav2stf
-LIBS         = -lboost_system -lboost_filesystem
+LIBS         = -lboost_system -lboost_filesystem -lfftw3
 
 SOURCES := $(shell find $(SRC_DIR) -name *.cpp)
 OBJECTS := $(SOURCES:$(SRC_DIR)%.cpp=$(OBJ_DIR)%.o)
@@ -16,7 +16,7 @@ OBJECTS := $(SOURCES:$(SRC_DIR)%.cpp=$(OBJ_DIR)%.o)
 
 all: $(addprefix $(BIN_DIR)/, $(TARGETS))
 
-$(BIN_DIR)/wav2stf: $(addprefix $(OBJ_DIR)/, wav2stf/wav2stf.o utils.o)
+$(BIN_DIR)/wav2stf: $(addprefix $(OBJ_DIR)/, wav2stf/wav2stf.o util/utils.o util/wav_utils.o)
 	mkdir -p $(BIN_DIR)
 	$(CXX) $^ $(LIBS) $(CXXFLAGS) -o $(BIN_DIR)/wav2stf
 
