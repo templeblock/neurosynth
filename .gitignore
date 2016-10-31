@@ -31,3 +31,4 @@
 #dataset
 *.raw
 *.wav
+*.stft

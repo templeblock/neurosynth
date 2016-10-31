@@ -1,6 +1,6 @@
 CXX         ?= g++
 CC          ?= gcc
-CXXFLAGS     = $(INCLUDES_DIR) -std=c++14 -Wall -Wextra -Wpedantic -march=native -O3 -flto -pipe
+CXXFLAGS     = $(INCLUDES_DIR) -g -std=c++14 -Wall -Wextra -Wpedantic -march=native -O3 -flto -pipe
 CFLAGS       = $(CXXFLAGS)
 INCLUDES_DIR = -I$(SRC_DIR)
 BIN_DIR      = bin
